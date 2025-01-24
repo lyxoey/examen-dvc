@@ -16,6 +16,7 @@ stages:
     - data/processed_data/X_train.csv
     - data/processed_data/X_test.csv
     - src/data/check_structure.py
+    - src/data/normalize.py
     outs:
     - data/processed_data/X_test_scaled.csv
     - data/processed_data/X_train_scaled.csv

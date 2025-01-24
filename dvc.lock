@@ -47,6 +47,10 @@ stages:
       hash: md5
       md5: fc48843ae973832ec0ded6b11e776864
       size: 1166
+    - path: src/data/normalize.py
+      hash: md5
+      md5: 3440d07ecd1c3a3fe8453a4918507c98
+      size: 3279
     outs:
     - path: data/processed_data/X_test_scaled.csv
       hash: md5
