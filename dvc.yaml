@@ -1,6 +1,6 @@
 stages:
   split:
-    cmd: python ./src/data/data_split.py
+    cmd: python -m src.data.data_split
     deps:
     - data/raw_data/raw.csv
     - src/data/data_split.py
@@ -11,7 +11,7 @@ stages:
     - data/processed_data/y_test.csv
     - data/processed_data/y_train.csv
   normalize:
-    cmd: python ./src/data/normalize.py
+    cmd: python -m src.data.normalize
     deps:
     - data/processed_data/X_train.csv
     - data/processed_data/X_test.csv
@@ -21,19 +21,30 @@ stages:
     - data/processed_data/X_test_scaled.csv
     - data/processed_data/X_train_scaled.csv
   gridsearch:
-    cmd: python ./src/data/grid_search.py
+    cmd: python -m src.models.grid_search
     deps:
     - data/processed_data/X_train_scaled.csv
     - data/processed_data/y_train.csv
-    - src/data/grid_search.py
+    - src/models/grid_search.py
     outs:
     - models/best_params.pkl
   training:
-    cmd: python ./src/data/training.py
+    cmd: python -m src.models.training
     deps:
     - data/processed_data/X_train_scaled.csv
     - data/processed_data/y_train.csv
     - models/best_params.pkl
-    - src/data/training.py
+    - src/models/training.py
     outs:
     - models/trained_model.pkl
+  evaluate:
+    cmd: python -m src.models.evaluate
+    deps:
+    - data/processed_data/X_test_scaled.csv
+    - data/processed_data/y_test.csv
+    - models/trained_model.pkl
+    - src/models/evaluate.py
+    - src/data/check_structure.py
+    outs:
+    - metrics/scores.json
+    - data/processed_data/predictions.csv
