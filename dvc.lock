@@ -73,10 +73,34 @@ stages:
       size: 25951
     - path: src/data/grid_search.py
       hash: md5
-      md5: b77eda133b39f736aafaad4f16d28f43
-      size: 4892
+      md5: 921629ab8562e7af5960251c8e1ea0d2
+      size: 4878
     outs:
     - path: models/best_params.pkl
       hash: md5
       md5: 71ba355e9a8eed814e82beadfe3178bc
       size: 53
+  training:
+    cmd: python ./src/data/training.py
+    deps:
+    - path: data/processed_data/X_train_scaled.csv
+      hash: md5
+      md5: c31e10c6bd74233879ba71cdf3a64c83
+      size: 222224
+    - path: data/processed_data/y_train.csv
+      hash: md5
+      md5: a9cd9d91da89f732843d72548f64ded3
+      size: 25951
+    - path: models/best_params.pkl
+      hash: md5
+      md5: 71ba355e9a8eed814e82beadfe3178bc
+      size: 53
+    - path: src/data/training.py
+      hash: md5
+      md5: 352fd7d75a2ebf78ac1f0f0b45e1a176
+      size: 3602
+    outs:
+    - path: models/trained_model.pkl
+      hash: md5
+      md5: 02429d0bac767a5447756e344a6154b2
+      size: 1143
