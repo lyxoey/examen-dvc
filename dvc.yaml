@@ -48,3 +48,6 @@ stages:
     outs:
     - metrics/scores.json
     - data/processed_data/predictions.csv
+
+metrics:
+  - metrics/scores.json
