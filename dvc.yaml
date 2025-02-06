@@ -20,3 +20,11 @@ stages:
     outs:
     - data/processed_data/X_test_scaled.csv
     - data/processed_data/X_train_scaled.csv
+  gridsearch:
+    cmd: python ./src/data/grid_search.py
+    deps:
+    - data/processed_data/X_train_scaled.csv
+    - data/processed_data/y_train.csv
+    - src/data/grid_search.py
+    outs:
+    - models/best_params.pkl
